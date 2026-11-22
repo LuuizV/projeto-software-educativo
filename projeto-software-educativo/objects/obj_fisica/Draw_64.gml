@@ -11,9 +11,13 @@ var _caixa = function(_x1, _y1, _x2, _y2, _cor) {
     draw_set_color(_cor);
     draw_roundrect(_x1, _y1, _x2, _y2, false);
 };
+// Evite chamar helpers locais de dentro de outra funcao anonima:
+// o escopo de var no GML nao e capturado por esse metodo.
 var _botao = function(_x1, _y1, _x2, _y2, _titulo, _cor) {
-    _caixa(_x1, _y1, _x2, _y2, _cor);
-    _texto(_x1 + 18, _y1 + 13, _titulo, cor_fundo, 1.45);
+    draw_set_color(_cor);
+    draw_roundrect(_x1, _y1, _x2, _y2, false);
+    draw_set_color(cor_fundo);
+    draw_text_transformed(_x1 + 18, _y1 + 13, string(_titulo), 1.45, 1.45, 0);
 };
 
 draw_rectangle_color(0, 0, gui_w, gui_h,
