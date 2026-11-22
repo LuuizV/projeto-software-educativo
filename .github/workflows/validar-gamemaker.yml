@@ -1,0 +1,22 @@
+name: Validar estrutura GameMaker
+
+on:
+  push:
+    branches: [main, "feature/**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validar-projeto:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v4
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validar metadados e referencias
+        run: python tools/check_project.py
