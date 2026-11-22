@@ -237,7 +237,16 @@ if (aba == 0) {
         _texto(1050, 467, "Isole a = v0^2 / (2*d)", cor_azul, 1.18);
         mensagem_dica = "A desaceleracao e positiva aqui.";
     }
-    _texto(1050, 568, usou_dica ? mensagem_dica : "Precisa de ajuda com o calculo?", cor_suave, 1.0);
+    // Exemplo de substituicao usando os dados da questao atual.
+    if (modulo == 0) {
+        _texto(1050, 547, "Use R=" + formatar_numero(cenario.distancia, 1) + " e v0=" + string(cenario.velocidade), cor_azul, 1.05);
+    } else if (modulo == 1) {
+        _texto(1050, 547, "Use h=" + string(cenario.altura) + " e R=" + formatar_numero(cenario.distancia, 1), cor_azul, 1.05);
+    } else {
+        _texto(1050, 547, "Use v0=" + string(cenario.velocidade) + " e d=" + formatar_numero(cenario.distancia, 1), cor_azul, 1.05);
+    }
+    _texto(1050, 584, usou_dica ? mensagem_dica : "Dica: isole a incognita.", cor_suave, 1.0);
+    _texto(1050, 614, "Use o caderno para calcular.", cor_suave, 1.0);
     _caixa(1050, 662, 1328, 717, cor_azul);
     _texto(1071, 679, usou_dica ? "OCULTAR DICA" : "MOSTRAR DICA (H)", cor_fundo, 1.32);
 } else {
@@ -264,8 +273,13 @@ if (aba == 0) {
         _caixa(_bx, 612, _bx + 62, 653, calc_operacao == _k ? cor_amarelo : cor_painel_claro);
         _texto(_bx + 24, 621, _op[_k], calc_operacao == _k ? cor_fundo : cor_texto, 1.35);
     }
-    _texto(1050, 675, "= " + resultado_calculadora(), cor_verde, 1.43);
-    _texto(1050, 711, "TAB alterna entre as abas", cor_suave, 0.92);
+    var _cientifica = ["sen", "asin", "raiz", "x2"];
+    for (var _q = 0; _q < 4; _q++) {
+        var _cx = 1056 + _q * 70;
+        _caixa(_cx, 656, _cx + 62, 691, calc_operacao == _q + 4 ? cor_amarelo : cor_painel_claro);
+        _texto(_cx + 10, 661, _cientifica[_q], calc_operacao == _q + 4 ? cor_fundo : cor_texto, 1.15);
+    }
+    _texto(1050, 701, "= " + resultado_calculadora(), cor_verde, 1.20);
 }
 draw_set_alpha(1);
 draw_set_halign(fa_left);
