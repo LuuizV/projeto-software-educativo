@@ -105,6 +105,14 @@ if (_clique) {
             calc_operacao = 2;
         } else if (clicou_em(_mx, _my, 1266, 612, 1328, 653)) {
             calc_operacao = 3;
+        } else if (clicou_em(_mx, _my, 1056, 656, 1118, 691)) {
+            calc_operacao = 4;
+        } else if (clicou_em(_mx, _my, 1126, 656, 1188, 691)) {
+            calc_operacao = 5;
+        } else if (clicou_em(_mx, _my, 1196, 656, 1258, 691)) {
+            calc_operacao = 6;
+        } else if (clicou_em(_mx, _my, 1266, 656, 1328, 691)) {
+            calc_operacao = 7;
         } else {
             calc_foco = -1;
             keyboard_string = "";
