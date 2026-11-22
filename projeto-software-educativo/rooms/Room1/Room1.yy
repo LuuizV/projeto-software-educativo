@@ -31,7 +31,6 @@
           "$GMRInstance": "v1",
           "%Name": "inst_3A6C9E21",
           "colour": 4294967295,
-          "creationCodeFile": "",
           "inheritCode": false,
           "hasCreationCode": false,
           "ignore": false,
@@ -52,7 +51,8 @@
           "scaleX": 1,
           "scaleY": 1,
           "x": 0,
-          "y": 0
+          "y": 0,
+          "frozen": false
         }
       ],
       "layers": [],

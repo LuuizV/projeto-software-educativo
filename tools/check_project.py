@@ -52,6 +52,16 @@ def check():
         for layer in rooms["Room1"]["layers"]
         for inst in layer.get("instances", [])
     ]
+    # O serializador do GameMaker exige frozen em cada GMRInstance.
+    # Ter JSON sintaticamente valido nao garante que o editor consiga carregar.
+    for instance in instances:
+        assert instance.get("$GMRInstance") is not None, "Instancia sem identificador GMRInstance"
+        assert "frozen" in instance and type(instance["frozen"]) is bool, (
+            f"Campo frozen ausente/invalido: {instance.get('name', 'sem nome')}"
+        )
+        assert "creationCodeFile" not in instance, (
+            f"Campo nao pertencente ao GMRInstance: {instance.get('name', 'sem nome')}"
+        )
     active = [i for i in instances if i["objectId"]["name"] == "obj_fisica"]
     assert len(active) == 1, "Room1 deve conter exatamente um obj_fisica"
     order = {e["name"] for e in rooms["Room1"]["instanceCreationOrder"]}
