@@ -71,7 +71,7 @@ def check():
     # A antiga _botao chamava os helpers _caixa/_texto e quebrava no Draw.
     draw_code = (ROOT / "objects" / "obj_fisica" / "Draw_64.gml").read_text(encoding="utf-8")
     import re
-    button_match = re.search(r"var _botao\\s*=\\s*function\\([^)]*\\)\\s*\\{(.*?)\\n\\};", draw_code, re.S)
+    button_match = re.search(r"var _botao\s*=\s*function\([^)]*\)\s*\{(.*?)\n\};", draw_code, re.S)
     assert button_match, "Funcao _botao ausente"
     button_body = button_match.group(1)
     assert "_caixa(" not in button_body and "_texto(" not in button_body, (
