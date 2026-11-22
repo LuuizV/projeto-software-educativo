@@ -67,6 +67,17 @@ def check():
     order = {e["name"] for e in rooms["Room1"]["instanceCreationOrder"]}
     assert active[0]["name"] in order, "Instancia nao registrada na ordem da sala"
 
+    # GameMaker nao captura variaveis locais de funcoes anonimas aninhadas.
+    # A antiga _botao chamava os helpers _caixa/_texto e quebrava no Draw.
+    draw_code = (ROOT / "objects" / "obj_fisica" / "Draw_64.gml").read_text(encoding="utf-8")
+    import re
+    button_match = re.search(r"var _botao\\s*=\\s*function\\([^)]*\\)\\s*\\{(.*?)\\n\\};", draw_code, re.S)
+    assert button_match, "Funcao _botao ausente"
+    button_body = button_match.group(1)
+    assert "_caixa(" not in button_body and "_texto(" not in button_body, (
+        "_botao nao pode chamar helpers locais; faltara variavel no runtime do GML"
+    )
+
     # Valida a matematica dos primeiros problemas, sem declarar compilacao GML.
     g = 9.8
     oblique_range = (25**2 * math.sin(math.radians(44))) / g
