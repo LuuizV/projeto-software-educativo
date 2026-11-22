@@ -245,10 +245,28 @@ campo_numerico_valido = function(_s) {
 };
 
 resultado_calculadora = function() {
-    if (!campo_numerico_valido(calc_a) || !campo_numerico_valido(calc_b)) return "Digite dois numeros";
+    if (!campo_numerico_valido(calc_a)) return "Digite o numero A";
     var _a = real(calc_a);
-    var _b = real(calc_b);
     var _r = 0;
+    if (calc_operacao >= 4) {
+        // Funcoes cientificas: seno e arco-seno trabalham em graus.
+        switch (calc_operacao) {
+            case 4: _r = dsin(_a); break;
+            case 5:
+                if (abs(_a) > 1) return "asin exige -1 a 1";
+                _r = darcsin(_a);
+                break;
+            case 6:
+                if (_a < 0) return "Raiz de negativo";
+                _r = sqrt(_a);
+                break;
+            case 7: _r = sqr(_a); break;
+        }
+        return formatar_numero(_r, 4);
+    }
+
+    if (!campo_numerico_valido(calc_b)) return "Digite o numero B";
+    var _b = real(calc_b);
     switch (calc_operacao) {
         case 0: _r = _a + _b; break;
         case 1: _r = _a - _b; break;
