@@ -33,7 +33,7 @@ O desbloqueio e os pontos ficam armazenados no arquivo local `fisica_em_acao.ini
 - **TAB**: alternar entre `FÓRMULA` e `CADERNO`.
 - **H**: mostrar/ocultar dica na aba de fórmula.
 - **Caderno**: arraste o mouse sobre a folha para rabiscar; **LIMPAR** apaga os rabiscos.
-- **Calculadora**: clique em A ou B, digite os números e escolha `+`, `-`, `x` ou `/`.
+- **Calculadora**: clique em A ou B, digite números (separe decimais com ponto) e escolha `+`, `-`, `x` ou `/`. A linha científica oferece `sen` (graus), `asin` (resultado em graus), `raiz` e `x2` (quadrado); essas funções usam apenas o valor A.
 - **Esc / MENU**: retornar ao menu sem perder a atividade atual.
 
 ## Organização dos arquivos
